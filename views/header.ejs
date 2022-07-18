@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <title> <%= locals.title ? title : "Login System" %> </title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Login_system</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link active" href="/">Home</a>
+                </div>
+                <div class="navbar-nav nav-btn ms-auto">
+                    <% if(locals.user) { %>
+                        <a class="nav-link active" href="/dashboard"><%= user+"'s " %>Dashboard</a> 
+                    <% }else { %>
+                        <button class="btn btn-primary"><a class="nav-link active" href="/login">Login</a></button>
+                        <button class="btn btn-success"><a class="nav-link active" href="/register">Register</a></button>
+                    <% } %> 
+                </div>
+            </div>
+        </div>
+    </nav>

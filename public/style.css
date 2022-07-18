@@ -1,0 +1,56 @@
+a {
+  text-decoration: none;
+}
+
+.box {
+  width: 100%;
+  max-width: 480px;
+  margin: 30px auto;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 40px 30px;
+}
+
+.box .head span {
+  font-size: 14px;
+}
+
+form .btn {
+  width: 60%;
+  display: block;
+  padding: 10px;
+  border-radius: 50px;
+  margin: 15px auto;
+  font-size: 1rem;
+}
+
+/* Navbar */
+.navbar {
+  padding: 14px 0;
+}
+
+.navbar-expand-lg .navbar-nav.nav-btn {
+  flex-direction: row;
+}
+
+.navbar {
+  padding: 14px 0;
+}
+
+.navbar-expand-lg .navbar-nav.nav-btn {
+  flex-direction: row;
+}
+.navbar .btn {
+  display: inline-block;
+  padding: 0 20px;
+  border-radius: 50px;
+  width: max-content;
+}
+
+.btn:first-child {
+  margin-right: 15px;
+}
+
+.navbar .btn .nav-link {
+  display: inline-block;
+}

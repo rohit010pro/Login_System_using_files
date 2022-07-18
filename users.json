@@ -1,0 +1,14 @@
+[
+    {
+        "_id": 101,
+        "name": "Rohit Kanojiya",
+        "email": "rohit123@gmail.com",
+        "password": "rohit123"
+    },
+    {
+        "_id": 102,
+        "name": "admin",
+        "email": "admin111@gmail.com",
+        "password": "admin111"
+    }
+]
