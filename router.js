@@ -50,15 +50,19 @@ route.post('/register', (req, res) => {
         .then(data => {
             const users = JSON.parse(data);
             const newUser = {
-                _id: users.length + 1,
+                _id: users.length + 101,
                 name: req.body.fullName,
                 email: req.body.email,
                 password: req.body.password
             }
             const updatedUsers = JSON.stringify([...users, newUser]);
-            addUsers(updatedUsers)
-                .then(status => { })
-                .catch(err => console.log(errr))
+            // console.log(updatedUsers);
+            users.updateUsers(updatedUsers)
+                .then(status => { 
+                    if(status == 1)
+                    console.log("User Registered");
+                })
+                .catch(err => console.log(err))
         })
         .catch(err => { console.log(err); })
 });

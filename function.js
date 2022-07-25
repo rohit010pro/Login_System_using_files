@@ -38,9 +38,9 @@ exports.getUserAll = (file) => {
 }
 
 // Add Users
-exports.addUsers = (users) => {
+exports.updateUsers = (users) => {
     return new Promise((resolve, rejects) => {
-        fs.writeFile('./users.json', err => {
+        fs.writeFile('./users.json',users, err => {
             if (err) rejects(err);
             resolve(1);
         });
