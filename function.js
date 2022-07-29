@@ -3,22 +3,36 @@ const fs = require('fs');
 // Get user information
 exports.getUserInfo = (email, password) => {
     return new Promise((resolve, reject) => {
-        fs.readFile('./users.json', (err, data) => {
+        fs.readFile('./users.json', 'utf8', (err, data) => {
             if (err) reject(err);
 
-            let userDetails = null;
-            const users = JSON.parse(data);
-            users.forEach(user => {
-                if (email == user.email && password == user.password) {
-                    userDetails = {
-                        id: user._id,
-                        name: user.name,
-                        email: user.email
-                    };
-                    resolve(userDetails);
-                }
-            });
-            reject("Incorrect Email or Passoword");
+            // console.log(data , typeof data);
+            if (data.trim() === "")
+                reject("Email not registered");
+            else {
+                let userDetails = null;
+                const users = JSON.parse(data);
+                let isEmailFound = false;
+
+                users.forEach(user => {
+                    if (email == user.email && password == user.password) {
+                        userDetails = {
+                            id: user._id,
+                            name: user.name,
+                            email: user.email
+                        };
+                        resolve(userDetails);
+                    }
+                    if (email == user.email) {
+                        isEmailFound = true;
+                        return;
+                    }
+                });
+                if (!isEmailFound)
+                    reject("Email not registered");
+                else
+                    reject("Incorrect Passoword");
+            }
         });
     });
 }
@@ -38,7 +52,7 @@ exports.getUserAll = (file) => {
 // Add Users
 exports.updateUsers = (users) => {
     return new Promise((resolve, rejects) => {
-        fs.writeFile('./users.json',users, err => {
+        fs.writeFile('./users.json', users, err => {
             if (err) rejects(err);
             resolve(1);
         });

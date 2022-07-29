@@ -20,10 +20,12 @@ route.get('/login', (req, res) => {
 route.post('/login', (req, res) => {
     users.getUserInfo(req.body.email, req.body.password)
         .then(userDetails => {
-            req.session.userId = userDetails.id;
-            req.session.userName = userDetails.name;
-            req.session.userEmail = userDetails.email;
-            console.log(req.session);
+            const user = {
+                userId: userDetails.id,
+                userName: userDetails.name,
+                userEmail: userDetails.email
+            }
+            req.session.user = user;
             res.redirect('/dashboard');
         })
         .catch(err => {
@@ -49,7 +51,7 @@ route.post('/register', (req, res) => {
             // if no users found
             if (data.trim() === "") {
                 const newUser = {
-                    _id: 101,
+                    _id: 1,
                     name: req.body.fullName,
                     email: req.body.email,
                     password: req.body.password
@@ -60,7 +62,7 @@ route.post('/register', (req, res) => {
             else {
                 const allUsers = JSON.parse(data);
                 const newUser = {
-                    _id: allUsers.length + 101,
+                    _id: allUsers.length + 1,
                     name: req.body.fullName,
                     email: req.body.email,
                     password: req.body.password
