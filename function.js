@@ -18,7 +18,7 @@ exports.getUserInfo = (email, password) => {
                     resolve(userDetails);
                 }
             });
-            reject("No Data found");
+            reject("Incorrect Email or Passoword");
         });
     });
 }

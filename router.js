@@ -18,19 +18,16 @@ route.get('/login', (req, res) => {
 
 // POST Login route
 route.post('/login', (req, res) => {
-    // console.log(req.body.email + " " + req.body.password);
-    
     users.getUserInfo(req.body.email, req.body.password)
         .then(userDetails => {
-            console.log(userDetails);
             req.session.userId = userDetails.id;
             req.session.userName = userDetails.name;
             req.session.userEmail = userDetails.email;
+            console.log(req.session);
             res.redirect('/dashboard');
         })
         .catch(err => {
-            // console.log("Error: " + err);
-            res.end("Error: " + err);
+            res.end(err);
         })
 });
 
@@ -56,15 +53,15 @@ route.post('/register', (req, res) => {
                 password: req.body.password
             }
             const updatedUsers = JSON.stringify([...users, newUser]);
-            // console.log(updatedUsers);
+    
             users.updateUsers(updatedUsers)
                 .then(status => { 
                     if(status == 1)
                     console.log("User Registered");
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.log(err));
         })
-        .catch(err => { console.log(err); })
+        .catch(err => { console.log(err); });
 });
 
 // Dashboard route
