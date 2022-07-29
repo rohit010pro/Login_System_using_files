@@ -1,14 +1,14 @@
 [
     {
         "_id": 101,
-        "name": "User",
-        "email": "user123@gmail.com",
-        "password": "user123"
+        "name": "Admin",
+        "email": "admin123@gmail.com",
+        "password": "admin123"
     },
     {
         "_id": 102,
-        "name": "Admin",
-        "email": "admin111@gmail.com",
-        "password": "admin111"
+        "name": "User 1",
+        "email": "user111@gmail.com",
+        "password": "user111"
     }
 ]

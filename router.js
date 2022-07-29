@@ -45,19 +45,33 @@ route.post('/register', (req, res) => {
     const file = './users.json';
     users.getUserAll(file)
         .then(data => {
-            const users = JSON.parse(data);
-            const newUser = {
-                _id: users.length + 101,
-                name: req.body.fullName,
-                email: req.body.email,
-                password: req.body.password
+            let updatedData;
+            // if no users found
+            if (data.trim() === "") {
+                const newUser = {
+                    _id: 101,
+                    name: req.body.fullName,
+                    email: req.body.email,
+                    password: req.body.password
+                }
+                updatedData = JSON.stringify([newUser], null, 4);
             }
-            const updatedUsers = JSON.stringify([...users, newUser]);
-    
-            users.updateUsers(updatedUsers)
-                .then(status => { 
-                    if(status == 1)
-                    console.log("User Registered");
+            // if one of more users found
+            else {
+                const allUsers = JSON.parse(data);
+                const newUser = {
+                    _id: allUsers.length + 101,
+                    name: req.body.fullName,
+                    email: req.body.email,
+                    password: req.body.password
+                }
+                updatedData = JSON.stringify([...allUsers, newUser], null, 4);
+            }
+
+            users.updateUsers(updatedData)
+                .then(status => {
+                    if (status == 1)
+                        res.redirect('/login');
                 })
                 .catch(err => console.log(err));
         })

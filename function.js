@@ -31,8 +31,6 @@ exports.getUserAll = (file) => {
                 reject(err);
             else
                 resolve(data);
-
-            reject("No Data found");
         });
     });
 }
